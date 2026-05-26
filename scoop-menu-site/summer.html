@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Scoop Menu – Summer</title>
+<style>
+/* ── FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:       #FFFBF4;
+  --bg2:      #FFF6E8;
+  --gold:     #D4861A;
+  --gold2:    #F0A830;
+  --gold-dim: rgba(212,134,26,0.15);
+  --coral:    #CC0A1E;
+  --coral2:   #E02828;
+  --teal:     #1BA89E;
+  --teal2:    #25C9BE;
+  --mint:     #E8F7F6;
+  --cream:    #3D2A10;
+  --cream2:   #5C3D18;
+  --white:    #FFFFFF;
+}
+
+/* ── PAGE ── */
+body{
+  background:#E8EEF0;
+  display:flex;
+  justify-content:center;
+  padding:24px;
+  min-height:100vh;
+}
+
+.page{
+  width:420mm;
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  font-family:'Amiri','Traditional Arabic','Times New Roman',serif;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+
+/* ── SUBTLE PATTERN ── */
+.page::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(212,134,26,0.06) 1px, transparent 0);
+  background-size:20px 20px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── CORAL FRAME ── */
+.frame{
+  position:absolute;
+  inset:5mm;
+  border:1.5px solid rgba(212,134,26,0.5);
+  pointer-events:none;
+  z-index:30;
+}
+.frame::before{
+  content:'';
+  position:absolute;
+  inset:3px;
+  border:0.5px solid rgba(212,134,26,0.2);
+}
+
+/* ── CORNER ORNAMENTS ── */
+.corners{
+  position:absolute;
+  inset:3.5mm;
+  pointer-events:none;
+  z-index:31;
+}
+.c{position:absolute;width:32px;height:32px}
+.c.tl{top:0;right:0}
+.c.tr{top:0;left:0;transform:scaleX(-1)}
+.c.bl{bottom:0;right:0;transform:scaleY(-1)}
+.c.br{bottom:0;left:0;transform:scale(-1,-1)}
+
+/* ══════════════════ HEADER ══════════════════ */
+.header{
+  position:relative;
+  z-index:2;
+  padding: 7mm 18mm 14mm;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  background: linear-gradient(150deg,
+    #6B0010 0%,
+    #A80018 22%,
+    #CC0A1E 42%,
+    #D92820 58%,
+    #E84028 75%,
+    #F06030 88%,
+    #F4882A 100%
+  );
+  overflow:hidden;
+  margin-bottom:-1px;
+}
+
+/* sunburst rays */
+.header::before{
+  content:'';
+  position:absolute;
+  top:-60%;
+  left:50%;
+  transform:translateX(-50%);
+  width:200%;
+  height:220%;
+  background:repeating-conic-gradient(
+    rgba(255,255,255,0.04) 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  pointer-events:none;
+  z-index:0;
+}
+
+/* big glow circle behind logo */
+.header::after{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-52%);
+  width:220px;height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,220,100,0.22) 0%, rgba(255,140,40,0.12) 45%, transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* wave bottom SVG */
+.header-wave{
+  position:absolute;
+  bottom:-1px; left:0; right:0;
+  line-height:0;
+  z-index:5;
+}
+.header-wave svg{ display:block; width:100%; }
+
+/* scattered dots */
+.header-dots{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+.header-dots span{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+}
+
+.brand{
+  position:relative;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  margin-bottom:4px;
+}
+
+.orn-row{
+  position:relative;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:4px 0 5px;
+}
+.orn-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6))}
+.orn-line.rev{background:linear-gradient(90deg,rgba(255,255,255,0.6),transparent)}
+.orn-diamond{
+  width:7px;height:7px;
+  background:#fff;
+  transform:rotate(45deg);
+  flex-shrink:0;
+  opacity:0.85;
+}
+.orn-dot{width:4px;height:4px;background:rgba(255,255,255,0.7);border-radius:50%;flex-shrink:0}
+
+.tagline-en{
+  position:relative;z-index:3;
+  font-family:'Cinzel',serif;
+  font-size:11px;
+  letter-spacing:8px;
+  color:rgba(255,255,255,0.95);
+  text-transform:uppercase;
+  display:block;
+  text-shadow:0 1px 6px rgba(0,0,0,0.3);
+}
+.tagline-ar{
+  position:relative;z-index:3;
+  font-family:'Amiri',serif;
+  font-size:17px;
+  color:rgba(255,255,255,0.9);
+  display:block;
+  margin-top:2px;
+  text-shadow:0 1px 6px rgba(0,0,0,0.3);
+}
+
+/* ══════════════════ BODY ══════════════════ */
+.body{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  flex:1;
+  position:relative;
+  z-index:2;
+  padding:7mm 10mm 5mm;
+  gap:0;
+}
+
+/* column separators */
+.col{padding:0 5mm}
+.col:not(:last-child){
+  border-left:1px solid rgba(212,134,26,0.15);
+}
+
+/* ── SECTION ── */
+.sec{margin-bottom:6mm}
+
+.sec-hd{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-bottom:5px;
+  gap:3px;
+}
+
+.sec-ar{
+  font-family:'Amiri','Traditional Arabic',serif;
+  font-size:21px;
+  font-weight:700;
+  color:var(--coral);
+  letter-spacing:1px;
+  line-height:1.2;
+}
+.sec-en{
+  font-family:'Cinzel',serif;
+  font-size:7px;
+  letter-spacing:3px;
+  color:var(--teal);
+  text-transform:uppercase;
+  opacity:0.75;
+}
+
+.sec-rule{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:4px 0 7px;
+}
+.r-line{flex:1;height:0.5px;background:linear-gradient(90deg,transparent,rgba(27,168,158,0.4),transparent)}
+.r-gem{
+  width:5px;height:5px;
+  border:1px solid var(--teal);
+  transform:rotate(45deg);
+  flex-shrink:0;
+  opacity:0.7;
+}
+
+/* sub-tag */
+.sub-tag{
+  display:block;
+  text-align:center;
+  font-family:'Amiri',serif;
+  font-size:11px;
+  color:var(--coral);
+  border:1px solid rgba(224,90,58,0.35);
+  border-radius:20px;
+  padding:1.5px 14px;
+  width:fit-content;
+  margin:0 auto 6px;
+  background:rgba(224,90,58,0.06);
+}
+
+/* ── ITEM ── */
+.item{
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+  padding:3px 0;
+  border-bottom:1px solid rgba(0,0,0,0.05);
+}
+.item:last-child{border-bottom:none}
+
+.i-n{
+  font-family:'Amiri','Traditional Arabic',serif;
+  font-size:14px;
+  color:#2A1A08;
+  line-height:1.5;
+  flex-shrink:0;
+}
+.i-sub{
+  display:block;
+  font-size:10px;
+  color:rgba(80,60,30,0.5);
+  font-style:italic;
+  line-height:1.3;
+}
+.i-fill{
+  flex:1;
+  border-bottom:1px dotted rgba(27,168,158,0.25);
+  margin-bottom:4px;
+  min-width:8px;
+}
+.i-p{
+  font-family:'Cinzel',serif;
+  font-size:12px;
+  font-weight:600;
+  color:var(--coral);
+  flex-shrink:0;
+}
+
+/* ══════════════════ FOOTER ══════════════════ */
+.footer{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:3.5mm 14mm;
+  background:linear-gradient(135deg, #6B0010 0%, #A80018 30%, #D92820 60%, #E84028 80%, #F06030 100%);
+  border-top:3px solid rgba(255,255,255,0.3);
+}
+.footer::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:5mm;right:5mm;
+  height:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6),rgba(255,255,255,0.9),rgba(255,255,255,0.6),transparent);
+}
+
+.fi{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  direction:ltr;
+}
+.fi-ic{
+  width:28px;height:28px;
+  border:1px solid rgba(255,255,255,0.5);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;
+  background:rgba(255,255,255,0.15);
+  flex-shrink:0;
+}
+.fi-t{
+  font-family:'Amiri',serif;
+  font-size:12.5px;
+  color:rgba(255,255,255,0.95);
+  line-height:1.4;
+}
+.fi-t em{
+  display:block;
+  font-style:normal;
+  font-family:'Cinzel',serif;
+  font-size:8px;
+  letter-spacing:1.5px;
+  color:rgba(255,255,255,0.6);
+  text-transform:uppercase;
+}
+.f-sep{width:1px;height:28px;background:rgba(255,255,255,0.25)}
+
+/* ── TAGLINE STRIP ── */
+.tagline-strip{
+  position:relative;
+  z-index:3;
+  background:var(--bg2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:3.5mm 18mm;
+  border-bottom:1px solid rgba(212,134,26,0.15);
+}
+.ts-line{
+  flex:1;
+  max-width:120px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(204,10,30,0.35));
+}
+.ts-line.rev{background:linear-gradient(90deg,rgba(204,10,30,0.35),transparent)}
+.ts-diamond{
+  width:5px;height:5px;
+  background:var(--coral);
+  transform:rotate(45deg);
+  opacity:0.7;
+  flex-shrink:0;
+}
+.ts-en{
+  font-family:'Cinzel',serif;
+  font-size:9px;
+  letter-spacing:6px;
+  color:var(--coral);
+  text-transform:uppercase;
+  opacity:0.8;
+}
+.ts-sep{
+  color:rgba(27,168,158,0.5);
+  font-size:14px;
+  line-height:1;
+}
+.ts-ar{
+  font-family:'Amiri',serif;
+  font-size:15px;
+  color:#3D2A10;
+  opacity:0.75;
+}
+
+/* ── PRINT ── */
+@media print{
+  body{background:white;padding:0}
+  .page{width:420mm;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- FRAME -->
+  <div class="frame"></div>
+
+  <!-- CORNERS -->
+  <div class="corners">
+    <svg class="c tl" viewBox="0 0 32 32" fill="none">
+      <path d="M2 2h28M2 2v28" stroke="#D4861A" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2" fill="#D4861A"/>
+      <path d="M8 2 Q16 10 16 16 Q10 16 2 8" stroke="#D4861A" stroke-width="0.6" fill="none" opacity="0.45"/>
+      <circle cx="16" cy="16" r="1.5" fill="none" stroke="#D4861A" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+    <svg class="c tr" viewBox="0 0 32 32" fill="none">
+      <path d="M2 2h28M2 2v28" stroke="#D4861A" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2" fill="#D4861A"/>
+      <path d="M8 2 Q16 10 16 16 Q10 16 2 8" stroke="#D4861A" stroke-width="0.6" fill="none" opacity="0.45"/>
+    </svg>
+    <svg class="c bl" viewBox="0 0 32 32" fill="none">
+      <path d="M2 2h28M2 2v28" stroke="#D4861A" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2" fill="#D4861A"/>
+      <path d="M8 2 Q16 10 16 16 Q10 16 2 8" stroke="#D4861A" stroke-width="0.6" fill="none" opacity="0.45"/>
+    </svg>
+    <svg class="c br" viewBox="0 0 32 32" fill="none">
+      <path d="M2 2h28M2 2v28" stroke="#D4861A" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2" fill="#D4861A"/>
+      <path d="M8 2 Q16 10 16 16 Q10 16 2 8" stroke="#D4861A" stroke-width="0.6" fill="none" opacity="0.45"/>
+    </svg>
+  </div>
+
+  <!-- ══ HEADER ══ -->
+  <div class="header">
+
+    <!-- sunburst dots decoration -->
+    <div class="header-dots">
+      <span style="width:80px;height:80px;top:-20px;right:8%;opacity:0.18"></span>
+      <span style="width:50px;height:50px;top:10px;right:18%;opacity:0.12"></span>
+      <span style="width:120px;height:120px;bottom:-30px;left:5%;opacity:0.15"></span>
+      <span style="width:60px;height:60px;top:20px;left:15%;opacity:0.1"></span>
+      <span style="width:30px;height:30px;top:5px;left:38%;opacity:0.2"></span>
+      <span style="width:40px;height:40px;bottom:10px;right:30%;opacity:0.14"></span>
+      <span style="width:90px;height:90px;top:-10px;left:42%;opacity:0.08"></span>
+    </div>
+
+    <div class="brand">
+      <img src="scoop-logo-hd.png" alt="Scoop Logo" style="
+        height:190px;
+        width:auto;
+        position:relative;
+        z-index:4;
+        filter:
+          drop-shadow(0 0 40px rgba(255,230,100,0.65))
+          drop-shadow(0 0 18px rgba(255,180,60,0.45))
+          drop-shadow(0 5px 16px rgba(0,0,0,0.5));
+        object-fit:contain;
+      ">
+    </div>
+
+    <!-- wave bottom -->
+    <div class="header-wave">
+      <svg viewBox="0 0 1200 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,28 C150,55 300,0 450,28 C600,55 750,0 900,28 C1050,55 1150,10 1200,28 L1200,55 L0,55 Z"
+          fill="#FFFBF4"/>
+        <path d="M0,35 C180,58 360,8 540,35 C720,58 900,8 1080,35 C1140,45 1170,30 1200,35 L1200,55 L0,55 Z"
+          fill="#FFFBF4" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ══ TAGLINE STRIP ══ -->
+  <div class="tagline-strip">
+    <div class="ts-line rev"></div>
+    <div class="ts-diamond"></div>
+    <span class="ts-en">Taste is Back</span>
+    <span class="ts-sep">✦</span>
+    <span class="ts-ar">طعم مختلف وأجواء رائعة</span>
+    <div class="ts-diamond"></div>
+    <div class="ts-line"></div>
+  </div>
+
+  <!-- ══ BODY ══ -->
+  <div class="body">
+
+    <!-- COL 1: مناقيش + بيتزا + ساندوتشات -->
+    <div class="col">
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">مناقيش</span>
+          <span class="sec-en">Manaqish</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item"><span class="i-n">زعتر</span><span class="i-fill"></span><span class="i-p">5</span></div>
+        <div class="item"><span class="i-n">دقة</span><span class="i-fill"></span><span class="i-p">5</span></div>
+        <div class="item"><span class="i-n">نقانق</span><span class="i-fill"></span><span class="i-p">6</span></div>
+        <div class="item"><span class="i-n">جبنة K</span><span class="i-fill"></span><span class="i-p">6</span></div>
+        <div class="item"><span class="i-n">جبنة فيتا</span><span class="i-fill"></span><span class="i-p">6</span></div>
+        <div class="item"><span class="i-n">جبنة إيميك</span><span class="i-fill"></span><span class="i-p">6</span></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">بيتزا</span>
+          <span class="sec-en">Pizza</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <span class="sub-tag">الحجم وسط</span>
+        <div class="item"><span class="i-n">مارجريتا</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">خضار</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">بالذرة</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">سلامي</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">سوبريم</span><span class="i-fill"></span><span class="i-p">25</span></div>
+        <div class="item"><span class="i-n">دجاج بالرانش</span><span class="i-fill"></span><span class="i-p">25</span></div>
+        <div class="item"><span class="i-n">دجاج بالباربيكيو</span><span class="i-fill"></span><span class="i-p">25</span></div>
+        <div class="item"><span class="i-n">كواترو</span><span class="i-fill"></span><span class="i-p">25</span></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">الساندوتشات</span>
+          <span class="sec-en">Sandwiches</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item"><span class="i-n">تشيكن بيتزا</span><span class="i-fill"></span><span class="i-p">22</span></div>
+        <div class="item"><span class="i-n">دجاج بالذرة</span><span class="i-fill"></span><span class="i-p">22</span></div>
+        <div class="item"><span class="i-n">دجاج بالمشروم</span><span class="i-fill"></span><span class="i-p">22</span></div>
+        <div class="item"><span class="i-n">دجاج بالكاري</span><span class="i-fill"></span><span class="i-p">22</span></div>
+        <div class="item"><span class="i-n">دجاج بالكريمة</span><span class="i-fill"></span><span class="i-p">22</span></div>
+        <div class="item"><span class="i-n">دجاج مكسيكي حار</span><span class="i-fill"></span><span class="i-p">22</span></div>
+        <div class="item"><span class="i-n">كالزوني</span><span class="i-fill"></span><span class="i-p">30</span></div>
+        <div class="item"><span class="i-n">فطيرة سيزر</span><span class="i-fill"></span><span class="i-p">30</span></div>
+      </div>
+
+    </div>
+
+    <!-- COL 2: كيك + حلويات غربية -->
+    <div class="col">
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">كيك</span>
+          <span class="sec-en">Cakes</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item">
+          <span class="i-n">مولتن كيك<span class="i-sub">نوتيلا · لوتس · كراميل</span></span>
+          <span class="i-fill"></span><span class="i-p">20</span>
+        </div>
+        <div class="item"><span class="i-n">كيك نوتيلا</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">موس شوكليت</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">براونيز</span><span class="i-fill"></span><span class="i-p">20</span></div>
+        <div class="item"><span class="i-n">بلاك فوريست</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">تشيز كيك</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">عيش السرايا</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">سان سابستيان</span><span class="i-fill"></span><span class="i-p">25</span></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">الحلويات الغربية</span>
+          <span class="sec-en">Western Desserts</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item"><span class="i-n">كريب</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">وافل</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">لقيمات</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">بان كيك</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">ميني بان كيك</span><span class="i-fill"></span><span class="i-p">18</span></div>
+        <div class="item"><span class="i-n">فوتوتشيني كريب</span><span class="i-fill"></span><span class="i-p">18</span></div>
+      </div>
+
+      <!-- center logo -->
+      <div style="text-align:center;margin:6mm 0 4mm;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+        <img src="scoop-logo-hd.png" alt="Scoop" style="
+          width:75%;
+          max-width:200px;
+          opacity:0.92;
+          filter: drop-shadow(0 0 25px rgba(224,90,58,0.45)) drop-shadow(0 0 12px rgba(27,168,158,0.3)) drop-shadow(0 3px 8px rgba(0,0,0,0.25));
+        ">
+        <div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:4px;color:var(--teal);text-transform:uppercase;margin-top:4px;opacity:0.7">Taste is Back</div>
+      </div>
+
+      <!-- center SVG ornament -->
+      <div style="text-align:center;margin:0 0 2mm;opacity:0.5">
+        <svg width="130" height="22" viewBox="0 0 130 22" fill="none">
+          <line x1="0" y1="11" x2="48" y2="11" stroke="#D4861A" stroke-width="0.6"/>
+          <path d="M52 11 L59 4 L66 11 L59 18Z" stroke="#D4861A" stroke-width="0.7" fill="rgba(201,168,76,0.12)"/>
+          <circle cx="65" cy="11" r="2.5" stroke="#D4861A" stroke-width="0.7" fill="rgba(201,168,76,0.15)"/>
+          <path d="M64 11 L71 4 L78 11 L71 18Z" stroke="#D4861A" stroke-width="0.7" fill="rgba(201,168,76,0.12)"/>
+          <line x1="82" y1="11" x2="130" y2="11" stroke="#D4861A" stroke-width="0.6"/>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- COL 3: مشروبات باردة + عصائر + ساخنة -->
+    <div class="col">
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">المشروبات الباردة</span>
+          <span class="sec-en">Cold Drinks</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item">
+          <span class="i-n">ميلك شيك<span class="i-sub">نوتيلا · لوتس · بستاشيو · كندر · فريرو · فانيلا · بلوبيري</span></span>
+          <span class="i-fill"></span><span class="i-p">20</span>
+        </div>
+        <div class="item"><span class="i-n">آيس موكا</span><span class="i-fill"></span><span class="i-p">15</span></div>
+        <div class="item"><span class="i-n">كولا</span><span class="i-fill"></span><span class="i-p">6</span></div>
+        <div class="item"><span class="i-n">سبرايت</span><span class="i-fill"></span><span class="i-p">6</span></div>
+        <div class="item"><span class="i-n">فانتا</span><span class="i-fill"></span><span class="i-p">6</span></div>
+        <div class="item"><span class="i-n">مياه كبير</span><span class="i-fill"></span><span class="i-p">8</span></div>
+        <div class="item"><span class="i-n">مياه صغير</span><span class="i-fill"></span><span class="i-p">5</span></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">العصائر الطبيعية</span>
+          <span class="sec-en">Fresh Juices</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item"><span class="i-n">ليمون بالنعناع</span><span class="i-fill"></span><span class="i-p">10</span></div>
+        <div class="item"><span class="i-n">مانجا</span><span class="i-fill"></span><span class="i-p">10</span></div>
+        <div class="item"><span class="i-n">فراولة</span><span class="i-fill"></span><span class="i-p">10</span></div>
+        <div class="item"><span class="i-n">موز بالحليب</span><span class="i-fill"></span><span class="i-p">15</span></div>
+        <div class="item"><span class="i-n">أفوكادو بالحليب</span><span class="i-fill"></span><span class="i-p">15</span></div>
+        <div class="item"><span class="i-n">كوكتيل</span><span class="i-fill"></span><span class="i-p">12</span></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-hd">
+          <span class="sec-ar">المشروبات الساخنة</span>
+          <span class="sec-en">Hot Drinks</span>
+        </div>
+        <div class="sec-rule"><div class="r-line"></div><div class="r-gem"></div><div class="r-line"></div></div>
+        <div class="item"><span class="i-n">قهوة</span><span class="i-fill"></span><span class="i-p">8</span></div>
+        <div class="item"><span class="i-n">نسكافية</span><span class="i-fill"></span><span class="i-p">8</span></div>
+        <div class="item"><span class="i-n">كوفي موكا</span><span class="i-fill"></span><span class="i-p">12</span></div>
+        <div class="item"><span class="i-n">كوفي كراميل</span><span class="i-fill"></span><span class="i-p">12</span></div>
+        <div class="item"><span class="i-n">كوفي لاتيه</span><span class="i-fill"></span><span class="i-p">12</span></div>
+        <div class="item"><span class="i-n">كابتشينو</span><span class="i-fill"></span><span class="i-p">10</span></div>
+        <div class="item"><span class="i-n">شاي</span><span class="i-fill"></span><span class="i-p">5</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer">
+    <div class="fi">
+      <div class="fi-ic">📍</div>
+      <div class="fi-t">
+        <em>Location</em>
+        البلدة القديمة · بجوار مطعم بيت ستي
+      </div>
+    </div>
+    <div class="f-sep"></div>
+    <svg width="70" height="18" viewBox="0 0 70 18" fill="none" opacity="0.45">
+      <path d="M35 1 L40 9 L35 17 L30 9Z" stroke="#D4861A" stroke-width="0.8" fill="rgba(27,168,158,0.12)"/>
+      <line x1="0" y1="9" x2="26" y2="9" stroke="#D4861A" stroke-width="0.5"/>
+      <line x1="44" y1="9" x2="70" y2="9" stroke="#D4861A" stroke-width="0.5"/>
+    </svg>
+    <div class="f-sep"></div>
+    <div class="fi">
+      <div class="fi-ic">📞</div>
+      <div class="fi-t"><em>Phone</em>0592096662</div>
+    </div>
+    <div class="f-sep"></div>
+    <div class="fi">
+      <div class="fi-ic">🌐</div>
+      <div class="fi-t"><em>Website</em>scoop.ps</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

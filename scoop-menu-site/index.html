@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Scoop – Poster</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Tajawal:wght@400;700;800;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#8C9EA2;display:flex;justify-content:center;padding:28px;min-height:100vh}
+
+/* ══ POSTER ══ */
+.poster{
+  width:480px;
+  position:relative;
+  background:#FFFBF4;
+  overflow:hidden;
+  box-shadow:0 20px 70px rgba(0,0,0,0.45);
+  font-family:'Amiri','Traditional Arabic',serif;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ══ HEADER ══ */
+.hd{
+  position:relative;
+  z-index:2;
+  background:linear-gradient(160deg,
+    #5C000E 0%,#8B0015 18%,#B5001A 36%,
+    #CC0A1E 54%,#D42818 70%,#DC3520 84%,#E04528 100%
+  );
+  padding:26px 20px 52px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* sunburst */
+.hd::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-conic-gradient(
+    rgba(255,255,255,0.03) 0deg 10deg,transparent 10deg 20deg
+  );
+  pointer-events:none;
+}
+/* glow behind logo */
+.hd::after{
+  content:'';position:absolute;
+  top:10%;left:50%;
+  transform:translate(-50%,-10%);
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,200,80,0.18) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+/* 3D logo */
+.logo-3d{
+  position:relative;z-index:3;
+  width:220px;height:auto;
+  display:block;
+  filter:
+    drop-shadow(-3px  3px 0 rgba(40,0,5,1.0))
+    drop-shadow(-6px  6px 0 rgba(40,0,5,0.82))
+    drop-shadow(-9px  9px 0 rgba(40,0,5,0.60))
+    drop-shadow(-12px 12px 0 rgba(40,0,5,0.36))
+    drop-shadow(-15px 15px 0 rgba(40,0,5,0.18))
+    drop-shadow(0 30px 40px rgba(0,0,0,0.60));
+  transform:perspective(700px) rotateX(6deg) rotateY(-10deg) scale(1.06);
+}
+
+/* wave */
+.wave{
+  position:absolute;bottom:-1px;left:0;right:0;
+  line-height:0;z-index:4;
+}
+.wave svg{display:block;width:100%}
+
+/* ══ TAGLINE STRIP ══ */
+.tstrip{
+  position:relative;z-index:3;
+  background:#FFF6E8;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:7px 20px;
+  border-bottom:1px solid rgba(212,134,26,0.18);
+}
+.tl{flex:1;max-width:90px;height:1px;background:linear-gradient(90deg,transparent,rgba(204,10,30,0.3))}
+.tl.r{background:linear-gradient(90deg,rgba(204,10,30,0.3),transparent)}
+.td{width:5px;height:5px;background:#CC0A1E;transform:rotate(45deg);opacity:0.65;flex-shrink:0}
+.ten{font-family:'Cinzel',serif;font-size:8px;letter-spacing:5px;color:#CC0A1E;text-transform:uppercase;opacity:0.8}
+.tsep{color:rgba(27,168,158,0.45);font-size:13px}
+.tar{font-family:'Amiri',serif;font-size:14px;color:#3D2A10;opacity:0.75}
+
+/* ══ BODY ══ */
+.body{
+  flex:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;z-index:2;
+  padding:8px 8px 76px;
+  gap:0;
+}
+
+/* column */
+.col{padding:0 9px}
+.col:first-child{border-left:1px solid rgba(212,134,26,0.15)}
+
+/* section heading */
+.sh{
+  display:flex;flex-direction:column;align-items:center;
+  margin-bottom:4px;gap:2px;margin-top:10px;
+}
+.sh:first-child{margin-top:3px}
+.shar{font-family:'Amiri','Traditional Arabic',serif;font-size:18px;font-weight:700;color:#CC0A1E;line-height:1.2}
+.shen{font-family:'Cinzel',serif;font-size:6px;letter-spacing:3px;color:#1BA89E;text-transform:uppercase;opacity:0.7}
+
+/* rule */
+.rule{display:flex;align-items:center;gap:5px;margin:3px 0 6px}
+.rl{flex:1;height:0.5px;background:linear-gradient(90deg,transparent,rgba(27,168,158,0.35),transparent)}
+.rg{width:5px;height:5px;border:1px solid #1BA89E;transform:rotate(45deg);flex-shrink:0;opacity:0.6}
+
+/* sub-tag */
+.stag{
+  display:block;text-align:center;
+  font-family:'Amiri',serif;font-size:10px;color:#CC0A1E;
+  border:1px solid rgba(204,10,30,0.3);border-radius:20px;
+  padding:1px 12px;width:fit-content;margin:0 auto 5px;
+  background:rgba(204,10,30,0.05);
+}
+
+/* item */
+.it{display:flex;align-items:baseline;gap:4px;padding:2px 0;border-bottom:1px solid rgba(0,0,0,0.045)}
+.it:last-child{border-bottom:none}
+.in{font-family:'Amiri','Traditional Arabic',serif;font-size:12.5px;color:#2A1A08;line-height:1.45;flex-shrink:0}
+.isub{display:block;font-size:9px;color:rgba(80,60,30,0.45);font-style:italic;line-height:1.2}
+.if{flex:1;border-bottom:1px dotted rgba(27,168,158,0.22);margin-bottom:3px;min-width:6px}
+.ip{font-family:'Cinzel',serif;font-size:10.5px;font-weight:700;color:#CC0A1E;flex-shrink:0}
+
+/* ══ FOOTER ══ */
+.ft{
+  position:absolute;bottom:0;left:0;right:0;
+  height:72px;z-index:10;
+  background:linear-gradient(135deg,#5C000E 0%,#8B0015 30%,#CC0A1E 65%,#D93020 100%);
+  border-top:2px solid rgba(255,200,80,0.3);
+  display:flex;align-items:center;justify-content:space-around;
+  direction:rtl;
+}
+.ft::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-conic-gradient(rgba(255,255,255,0.025) 0deg 10deg,transparent 10deg 20deg);
+}
+.fi{color:#fff;text-align:center;position:relative;z-index:1}
+.fi .lb{font-family:'Cinzel',serif;font-size:6px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:3px}
+.fi .vl{font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700}
+.fs{width:1px;height:30px;background:rgba(255,255,255,0.2);flex-shrink:0;position:relative;z-index:1}
+
+@media print{body{background:#fff;padding:0}.poster{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <img src="scoop-logo-hd.png" class="logo-3d" alt="Scoop">
+    <div class="wave">
+      <svg viewBox="0 0 480 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,25 C80,50 160,0 240,25 C320,50 400,0 480,25 L480,50 L0,50 Z" fill="#FFFBF4"/>
+        <path d="M0,32 C100,52 200,10 300,32 C380,48 440,20 480,32 L480,50 L0,50 Z" fill="#FFFBF4" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- TAGLINE STRIP -->
+  <div class="tstrip">
+    <div class="tl r"></div><div class="td"></div>
+    <span class="ten">Taste is Back</span>
+    <span class="tsep">✦</span>
+    <span class="tar">طعم مختلف وأجواء رائعة</span>
+    <div class="td"></div><div class="tl"></div>
+  </div>
+
+  <!-- BODY: 2 columns -->
+  <div class="body">
+
+    <!-- RIGHT col: كيك / حلويات / عصائر / باردة -->
+    <div class="col">
+
+      <div class="sh">
+        <span class="shar">كيك</span>
+        <span class="shen">Cakes</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">موتن كيك<span class="isub">فانيلا · وش · كامل</span></span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">كيك نوتيلا</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">موس شوكليت</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">براونيز</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">بلاك فوريست</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">تشيز كيك</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">عيش السرايا</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">سان سابستيان</span><span class="if"></span><span class="ip">25</span></div>
+
+      <div class="sh">
+        <span class="shar">حلويات غربية</span>
+        <span class="shen">Western Desserts</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">كريب</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">وافل</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">لقيمات</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">بان كيك</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">ميني بان كيك</span><span class="if"></span><span class="ip">18</span></div>
+      <div class="it"><span class="in">فوتوشيني كريب</span><span class="if"></span><span class="ip">18</span></div>
+
+      <div class="sh">
+        <span class="shar">عصائر طبيعية</span>
+        <span class="shen">Fresh Juices</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">ليمون بالنعناع</span><span class="if"></span><span class="ip">10</span></div>
+      <div class="it"><span class="in">مانجا</span><span class="if"></span><span class="ip">10</span></div>
+      <div class="it"><span class="in">فراولة</span><span class="if"></span><span class="ip">10</span></div>
+      <div class="it"><span class="in">موز بالحليب</span><span class="if"></span><span class="ip">15</span></div>
+      <div class="it"><span class="in">أفوكادو بالحليب</span><span class="if"></span><span class="ip">15</span></div>
+      <div class="it"><span class="in">كوكتيل</span><span class="if"></span><span class="ip">12</span></div>
+
+      <div class="sh">
+        <span class="shar">مشروبات باردة</span>
+        <span class="shen">Cold Drinks</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">ميلك شيك<span class="isub">فانيلا · وش · قيمر · فايلا · بلوبيري</span></span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">آيس موكا</span><span class="if"></span><span class="ip">15</span></div>
+      <div class="it"><span class="in">كولا</span><span class="if"></span><span class="ip">6</span></div>
+      <div class="it"><span class="in">سبرايت</span><span class="if"></span><span class="ip">6</span></div>
+      <div class="it"><span class="in">فانتا</span><span class="if"></span><span class="ip">6</span></div>
+      <div class="it"><span class="in">مياه كبير</span><span class="if"></span><span class="ip">8</span></div>
+      <div class="it"><span class="in">مياه صغير</span><span class="if"></span><span class="ip">5</span></div>
+    </div>
+
+    <!-- LEFT col: مناقيش / بيتزا / ساندوتشات / قهوة -->
+    <div class="col">
+
+      <div class="sh">
+        <span class="shar">مناقيش</span>
+        <span class="shen">Manaqish</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">زعتر</span><span class="if"></span><span class="ip">5</span></div>
+      <div class="it"><span class="in">دقة</span><span class="if"></span><span class="ip">5</span></div>
+      <div class="it"><span class="in">نقانق</span><span class="if"></span><span class="ip">6</span></div>
+      <div class="it"><span class="in">جبنة K</span><span class="if"></span><span class="ip">6</span></div>
+      <div class="it"><span class="in">جبنة فيتا</span><span class="if"></span><span class="ip">6</span></div>
+      <div class="it"><span class="in">جبنة إيميك</span><span class="if"></span><span class="ip">6</span></div>
+
+      <div class="sh">
+        <span class="shar">بيتزا</span>
+        <span class="shen">Pizza</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <span class="stag">الحجم وسط</span>
+      <div class="it"><span class="in">مارجريتا</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">خضار</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">بالذرة</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">سلامي</span><span class="if"></span><span class="ip">20</span></div>
+      <div class="it"><span class="in">سوبريم</span><span class="if"></span><span class="ip">25</span></div>
+      <div class="it"><span class="in">دجاج بالرانش</span><span class="if"></span><span class="ip">25</span></div>
+      <div class="it"><span class="in">دجاج بالباربيكيو</span><span class="if"></span><span class="ip">25</span></div>
+      <div class="it"><span class="in">كواترو</span><span class="if"></span><span class="ip">25</span></div>
+
+      <div class="sh">
+        <span class="shar">ساندوتشات</span>
+        <span class="shen">Sandwiches</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">تشيكن بيتزا</span><span class="if"></span><span class="ip">22</span></div>
+      <div class="it"><span class="in">دجاج بالذرة</span><span class="if"></span><span class="ip">22</span></div>
+      <div class="it"><span class="in">دجاج بالمشروم</span><span class="if"></span><span class="ip">22</span></div>
+      <div class="it"><span class="in">دجاج بالكاري</span><span class="if"></span><span class="ip">22</span></div>
+      <div class="it"><span class="in">دجاج بالكريمة</span><span class="if"></span><span class="ip">22</span></div>
+      <div class="it"><span class="in">دجاج مكسيكي حار</span><span class="if"></span><span class="ip">22</span></div>
+      <div class="it"><span class="in">كالزوني</span><span class="if"></span><span class="ip">30</span></div>
+
+      <div class="sh">
+        <span class="shar">مشروبات ساخنة</span>
+        <span class="shen">Hot Drinks</span>
+      </div>
+      <div class="rule"><div class="rl"></div><div class="rg"></div><div class="rl"></div></div>
+      <div class="it"><span class="in">قهوة</span><span class="if"></span><span class="ip">8</span></div>
+      <div class="it"><span class="in">نسكافيه</span><span class="if"></span><span class="ip">8</span></div>
+      <div class="it"><span class="in">كوفي موكا</span><span class="if"></span><span class="ip">12</span></div>
+      <div class="it"><span class="in">كوفي كراميل</span><span class="if"></span><span class="ip">12</span></div>
+      <div class="it"><span class="in">كوفي لاتيه</span><span class="if"></span><span class="ip">12</span></div>
+      <div class="it"><span class="in">كابتشينو</span><span class="if"></span><span class="ip">10</span></div>
+      <div class="it"><span class="in">شاي</span><span class="if"></span><span class="ip">5</span></div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="ft">
+    <div class="fi"><div class="lb">للتواصل</div><div class="vl">📞 XXX-XXXXXXX</div></div>
+    <div class="fs"></div>
+    <div class="fi"><div class="lb">الموقع</div><div class="vl">📍 فلسطين</div></div>
+    <div class="fs"></div>
+    <div class="fi"><div class="lb">Instagram</div><div class="vl">@scoop.ps</div></div>
+  </div>
+
+</div>
+</body>
+</html>
