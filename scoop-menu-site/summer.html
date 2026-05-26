@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scoop Menu – Summer</title>
 <style>
 /* ── FONTS ── */
@@ -30,12 +31,14 @@ body{
   background:#E8EEF0;
   display:flex;
   justify-content:center;
-  padding:24px;
+  padding:0;
   min-height:100vh;
+  align-items:flex-start;
 }
 
 .page{
-  width:420mm;
+  width:100%;
+  max-width:1260px;
   background:var(--bg);
   position:relative;
   overflow:hidden;
@@ -63,6 +66,7 @@ body{
   border:1.5px solid rgba(212,134,26,0.5);
   pointer-events:none;
   z-index:30;
+  display:none;
 }
 .frame::before{
   content:'';
@@ -77,6 +81,7 @@ body{
   inset:3.5mm;
   pointer-events:none;
   z-index:31;
+  display:none;
 }
 .c{position:absolute;width:32px;height:32px}
 .c.tl{top:0;right:0}
@@ -88,7 +93,7 @@ body{
 .header{
   position:relative;
   z-index:2;
-  padding: 7mm 18mm 14mm;
+  padding: 20px 16px 40px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -211,18 +216,21 @@ body{
 /* ══════════════════ BODY ══════════════════ */
 .body{
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
+  grid-template-columns:1fr;
   flex:1;
   position:relative;
   z-index:2;
-  padding:7mm 10mm 5mm;
+  padding:16px 16px 8px;
   gap:0;
 }
 
 /* column separators */
-.col{padding:0 5mm}
+.col{padding:0 10px}
 .col:not(:last-child){
-  border-left:1px solid rgba(212,134,26,0.15);
+  border-left:none;
+  border-bottom:1px solid rgba(212,134,26,0.15);
+  padding-bottom:16px;
+  margin-bottom:8px;
 }
 
 /* ── SECTION ── */
@@ -327,8 +335,10 @@ body{
   z-index:2;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:3.5mm 14mm;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:14px 16px;
   background:linear-gradient(135deg, #6B0010 0%, #A80018 30%, #D92820 60%, #E84028 80%, #F06030 100%);
   border-top:3px solid rgba(255,255,255,0.3);
 }
@@ -380,9 +390,10 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:14px;
-  padding:3.5mm 18mm;
+  gap:10px;
+  padding:10px 16px;
   border-bottom:1px solid rgba(212,134,26,0.15);
+  flex-wrap:wrap;
 }
 .ts-line{
   flex:1;
@@ -418,6 +429,25 @@ body{
   opacity:0.75;
 }
 
+/* ── TABLET: 2 columns ── */
+@media (min-width:640px){
+  body{padding:16px;align-items:center}
+  .body{grid-template-columns:1fr 1fr;padding:20px 20px 10px}
+  .col:not(:last-child){border-left:1px solid rgba(212,134,26,0.15);border-bottom:none;padding-bottom:0;margin-bottom:0}
+  .header{padding:24px 24px 48px}
+  .tagline-strip{padding:10px 24px;gap:14px}
+  .footer{justify-content:space-between;padding:14px 24px}
+}
+/* ── DESKTOP: 3 columns ── */
+@media (min-width:1024px){
+  body{padding:24px}
+  .frame{display:block}
+  .corners{display:block}
+  .body{grid-template-columns:1fr 1fr 1fr;padding:7mm 10mm 5mm}
+  .header{padding:7mm 18mm 14mm}
+  .tagline-strip{padding:3.5mm 18mm;gap:14px}
+  .footer{justify-content:space-between;padding:3.5mm 14mm}
+}
 /* ── PRINT ── */
 @media print{
   body{background:white;padding:0}
@@ -472,7 +502,7 @@ body{
 
     <div class="brand">
       <img src="scoop-logo-hd.png" alt="Scoop Logo" style="
-        height:190px;
+        height:min(190px,40vw);
         width:auto;
         position:relative;
         z-index:4;
